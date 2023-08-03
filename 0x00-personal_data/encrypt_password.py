@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 """password hashing module"""
-from bcrypt import hashpw, gensalt
+import bcrypt
+from typing import Union
 
 
-def hash_password(password: str) -> bytes:
+def hash_password(password: str) -> Union[bytes, str]:
     """returns hashed form of password"""
-    return hashpw(password.encode(), gensalt())
+    if password == '' or password is None:
+        return ''
+    return bcrypt.hashpw(password.encode(), bcrypt.gensalt())
