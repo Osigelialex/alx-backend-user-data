@@ -6,6 +6,6 @@ from typing import Union
 
 def hash_password(password: str) -> Union[bytes, None]:
     """returns hashed form of password"""
-    if password is None or not isinstance(password, str):
-        return None
-    return bcrypt.hashpw(password.encode(), bcrypt.gensalt())
+    salt = bcrypt.gensalt()
+    hashed_password =  bcrypt.hashpw(password.encode('utf-8'), salt)
+    return hashed_password
