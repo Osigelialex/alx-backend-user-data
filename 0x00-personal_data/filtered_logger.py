@@ -11,11 +11,11 @@ def filter_datum(fields: List[str], redaction: str,
     by replacing specific fields with a redaction string.
 
     Args:
-        fields (List[str]): A list of strings 
+        fields (List[str]): A list of strings
         representing the fields to be obfuscated.
-        redaction (str): A string representing the 
+        redaction (str): A string representing the
         replacement for the obfuscated fields.
-        message (str): A string representing 
+        message (str): A string representing
         the log message to be obfuscated.
         separator (str): A string representing the separator 
         used in the log message to distinguish between fields.
