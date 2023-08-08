@@ -49,8 +49,8 @@ def before_request_func():
         return
 
     path = request.path
-    valid_paths = ['/api/v1/status/', '/api/v1/unauthorized/',
-            '/api/v1/forbidden/']
+    valid_paths = ['/api/v1/status/',
+                   '/api/v1/unauthorized/', '/api/v1/forbidden/']
 
     if not auth.require_auth(path, valid_paths):
         return
