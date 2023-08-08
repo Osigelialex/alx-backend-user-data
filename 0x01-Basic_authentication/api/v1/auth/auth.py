@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+"""API authentication management module
+"""
 from flask import request
 from typing import List, TypeVar
 
