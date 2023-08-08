@@ -42,7 +42,7 @@ def forbidden(error) -> str:
 
 
 @app.before_request
-def before_request_func():
+def before_request_func() -> str:
     """filters incoming requests
     """
     if auth is None:
