@@ -9,9 +9,15 @@ class Auth:
     """Manages the API authentication
     """
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
-        """applies required auth
+        """defines routes that don't need authentication
         """
-        return False
+        if not path or not excluded_paths or len(excluded_paths) == 0:
+            return True
+
+        if any([path in x for x in excluded_paths]):
+            return False
+
+        return True
 
     def authorization_header(self, request=None) -> str:
         """authorization header
