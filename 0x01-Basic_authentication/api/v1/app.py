@@ -57,10 +57,10 @@ def before_request_func() -> str:
     if not auth.require_auth(path, valid_paths):
         return
 
-    if auth.authorization_header(request):
+    if auth.authorization_header(request) is None:
         abort(403)
 
-    if not auth.current_user(request):
+    if auth.current_user(request) is None:
         abort(401)
 
 
