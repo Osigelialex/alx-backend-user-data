@@ -65,11 +65,17 @@ class DB:
         """
         if len(kwargs) == 0:
             return
+        
+        user = None
 
-        user = self.find_user_by(id=user_id)
-
-        if user is None:
+        try:
+            user = self.find_user_by(id=user_id)
+        except NoResultFound:
             return
 
+        valid_keys = ['hashed_password', 'email']
+
         for key, value in kwargs.items():
+            if key not in valid_keys:
+                raise ValueError
             user.key = value
