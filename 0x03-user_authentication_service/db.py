@@ -67,5 +67,9 @@ class DB:
             return
 
         user = self.find_user_by(id=user_id)
+
+        if user is None:
+            return
+
         for key, value in kwargs.items():
             user.key = value
