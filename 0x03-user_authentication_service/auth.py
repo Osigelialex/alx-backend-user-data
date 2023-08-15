@@ -31,6 +31,24 @@ class Auth:
         new_user = self._db.add_user(email, hashed_password)
         return new_user
 
+    def valid_login(self, email: str, password: str) -> bool:
+        """validates the users credentials
+        """
+        if email is None or password is None:
+            return False
+
+        try:
+            user = self._db.find_user_by(email=email)
+            password = password.encode('utf-8')
+
+            if user is not None and \
+                    bcrypt.checkpw(password, user.hashed_password):
+                return True
+        except NoResultFound:
+            return False
+
+        return False
+
 
 def _hash_password(password: str) -> bytes:
     """Returns the hashed form of a password
