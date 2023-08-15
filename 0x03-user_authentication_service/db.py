@@ -34,6 +34,9 @@ class DB:
     def add_user(self, email: str, hashed_password: str) -> User:
         """adds user to database
         """
+        if email is None or hashed_password is None:
+            return None
+
         new_user = User(email=email, hashed_password=hashed_password)
         self._session.add(new_user)
         self._session.commit()
@@ -57,7 +60,7 @@ class DB:
 
         return user
 
-    def update_user(self, user_id:int, **kwargs) -> None:
+    def update_user(self, user_id: int, **kwargs) -> None:
         """updates user details using provided input
         """
         if len(kwargs) == 0:
