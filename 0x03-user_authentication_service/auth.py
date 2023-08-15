@@ -50,12 +50,6 @@ class Auth:
 
         return False
 
-    @property
-    def _generate_uuid(self) -> str:
-        """Generates a uuid
-        """
-        return str(uuid.uuid4())
-
 
 def _hash_password(password: str) -> bytes:
     """Returns the hashed form of a password
@@ -63,3 +57,9 @@ def _hash_password(password: str) -> bytes:
     salt = bcrypt.gensalt()
     hashed = bcrypt.hashpw(password.encode('utf-8'), salt)
     return hashed
+
+
+def _generate_uuid(self) -> str:
+    """Generates a uuid
+    """
+    return str(uuid.uuid4())
