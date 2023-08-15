@@ -50,6 +50,7 @@ class Auth:
 
         return False
 
+    @property
     def _generate_uuid(self) -> str:
         """Generates a uuid
         """
