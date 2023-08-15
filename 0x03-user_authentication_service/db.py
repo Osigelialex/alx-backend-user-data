@@ -65,7 +65,7 @@ class DB:
         """
         if len(kwargs) == 0:
             return
-        
+
         user = None
 
         try:
