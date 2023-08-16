@@ -109,8 +109,7 @@ class Auth:
 
         try:
             user = self._db.find_user_by(reset_token=reset_token)
-            salt = bcrypt.gensalt()
-            hashed_psw = bcrypt.hashpw(password.encode('utf-8'), salt)
+            hashed_psw = _hash_password(password)
             user.hashed_password = hashed_psw
         except NoResultFound:
             raise ValueError
