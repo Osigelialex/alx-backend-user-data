@@ -101,6 +101,20 @@ class Auth:
         except NoResultFound:
             raise ValueError
 
+    def update_password(self, reset_token: str, password: str) -> None:
+        """Update the password of a user using the reset token
+        """
+        if reset_token is None or password is None:
+            return
+
+        try:
+            user = self._db.find_user_by(reset_token=reset_token)
+            salt = bcrypt.gensalt()
+            hashed_psw = bcrypt.hashpw(password.encode('utf-8'), salt)
+            user.hashed_password = hashed_psw
+        except NoResultFound:
+            raise ValueError
+
 
 def _hash_password(password: str) -> bytes:
     """Returns the hashed form of a password
